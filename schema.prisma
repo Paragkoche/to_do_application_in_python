@@ -1,0 +1,35 @@
+generator db {
+    provider  = "prisma-client-py"
+    interface = "asyncio"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./dev.sqlite"
+}
+
+model User {
+    id       String @id @default(uuid())
+    username String
+    password String
+    email    String @unique
+    Task     Task[]
+}
+
+model Task {
+    id         String   @id @default(uuid())
+    user       User     @relation(fields: [user_id], references: [id])
+    user_id    String
+    cata       Cata[]
+    what       String
+    When       DateTime
+    isDelete   Boolean
+    isComplete Boolean
+}
+
+model Cata {
+    id     String  @id @default(uuid())
+    name   String  @default("default")
+    Task   Task?   @relation(fields: [taskId], references: [id])
+    taskId String?
+}

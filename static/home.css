@@ -1,0 +1,367 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10vh;
+}
+.nav button{
+  background: #29A19C;
+border-radius: 8px;
+padding: 10px 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: none;
+color: white;
+cursor: pointer;
+}
+.nav button svg{
+  margin: 0 2px;
+}
+.nav div p{
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 22px;
+/* identical to box height */
+margin-right: 20px;
+
+/* Светлая тема/Темный */
+
+color: #282846;
+}
+.body {
+  display: flex;
+  justify-content: space-between;
+}
+.body > div {
+  width: 50%;
+  height: 90vh;
+  padding: 0 20px;
+}
+.left .sftw {
+  width: 100%;
+  height: 30vh;
+  background: #ffffff;
+  padding: 20px;
+  box-shadow: 0px 10px 25px rgba(29, 52, 54, 0.08);
+  border-radius: 10px;
+}
+.left .sftw .sftw__header {
+  display: flex;
+  height: 10%;
+  width: 100%;
+  justify-content: space-between;
+}
+.left .sftw .sftw__header p {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+
+  letter-spacing: 0.02em;
+
+  color: #29a19c;
+}
+.left .sftw .sftw__c {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left .sftw .sftw__c div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+}
+.left .sftw .sftw__c div div {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #29a19c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.left .sftw .sftw__c div > h1 {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+
+  color: #282846;
+}
+.left .sftw .sftw__c div div h1 {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 49px;
+  letter-spacing: 0.02em;
+
+  color: #29a19c;
+}
+.left .sftw .sftw__c div div p {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: #282846;
+}
+.Active_complite {
+  background: #ffffff;
+
+  margin-top: 20px;
+  box-shadow: 0px 10px 25px rgba(29, 52, 54, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+}
+.Active_complite h1 {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.02em;
+  color: #29a19c;
+}
+.Active_complite .border {
+  background: #ffffff;
+  border: 1px solid rgba(40, 40, 70, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  height: 50px;
+}
+.right{
+  width: 50%;
+}
+.right .JOTD,.right .PC{
+  background: #FFFFFF;
+/* Smooth shadow */
+
+box-shadow: 0px 10px 25px rgba(29, 52, 54, 0.08);
+border-radius: 10px;
+padding: 20px;
+}
+.right .JOTD h1, .right .PC h1{
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 600;
+font-size: 18px;
+line-height: 25px;
+/* identical to box height */
+
+letter-spacing: 0.02em;
+
+/* Акцент */
+
+color: #29A19C;
+}
+.right .JOTD p{
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 150%;
+/* or 21px */
+
+letter-spacing: 0.02em;
+
+/* Светлая тема/Темный */
+
+color: #282846;
+
+
+}
+.right .PC{
+  margin-top: 20px;
+}
+
+.box{
+  position: fixed;
+  transform: translate(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 350px;
+  background: #FFFFFF;
+  box-shadow: 0px 10px 25px rgba(29, 52, 54, 0.08);
+  border-radius: 10px;
+  padding:20px
+}
+.box h1{
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 27px;
+letter-spacing: 0.02em;
+
+
+
+color: #29A19C;
+}
+.box .f1{
+  width: 100%;
+
+}
+.box .f1 form{
+  width: 100%;
+  padding: 10px 0;
+}
+.box .f1 form .input{
+  width: 100%;
+  height: 64px;
+
+}
+.box .f1 form .input label{
+  width: 100%;
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+letter-spacing: 0.02em;
+
+/* Светлая тема/Темный */
+
+color: #282846;
+
+}
+.box .f1 form .input input{
+  width: 100%;
+  border: 1px solid rgba(40, 40, 70, 0.1);
+border-radius: 8px;
+height: 35px;
+outline: none;
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+letter-spacing: 0.02em;
+
+color: #000000;
+padding: 8px 15px;
+}
+.box .f1 form .multi-input{
+  width: 100%;
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+
+}
+.box .f1 form .multi-input label{
+ 
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 700;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+letter-spacing: 0.02em;
+
+/* Светлая тема/Темный */
+
+color: #282846;
+
+}
+.box .f1 form .multi-input div{
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}
+.box .f1 form .multi-input input,.box .f1 form .multi-input select{
+  
+  border: 1px solid rgba(40, 40, 70, 0.1);
+border-radius: 8px;
+height: 35px;
+outline: none;
+font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+letter-spacing: 0.02em;
+
+color: #000000;
+padding: 8px 15px;
+}
+.box .f1 .button{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+}
+.box .f1 .button button{
+  padding: 10px 25px;
+  width: 100px;
+height: 42px;
+margin-top: 23px;
+cursor: pointer;
+}
+.box .f1 .button :nth-child(1){
+  background: #F05454;
+border-radius: 8px;
+border: none;
+outline: none;
+color: #ffffff;
+}
+.box .f1 .button :nth-child(2){
+background: #29A19C;
+border-radius: 8px;
+border: none;
+outline: none;
+color: #ffffff;
+}
+.on-off-btn{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px 10px;
+  border-radius: 50%;
+  border: 1px solid rgba(40, 40, 70, 0.1);
+  background-color: transparent;
+  cursor: pointer;
+}
+.border p {
+  font-family: 'Nunito';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 19px;
+/* identical to box height */
+
+letter-spacing: 0.02em;
+
+/* Светлая тема/Темный */
+
+color: #282846;
+}
+.border {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+.border div button{
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}

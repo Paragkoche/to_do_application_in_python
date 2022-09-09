@@ -1,0 +1,383 @@
+{% extends 'layout_home.html' %} {% block style %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{ url_for('static', path='home.css') }}"
+/>
+
+{% endblock style %} {% block body %}
+
+<nav class="nav">
+  <button onclick="openBox()">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M10 19C14.9706 19 19 14.9706 19 10C19 5.02944 14.9706 1 10 1C5.02944 1 1 5.02944 1 10C1 14.9706 5.02944 19 10 19Z"
+        stroke="#FAFAFA"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M10 6.3999V13.5999"
+        stroke="#FAFAFA"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M6.40002 10H13.6"
+        stroke="#FAFAFA"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    New task
+  </button>
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g opacity="0.7">
+      <path
+        d="M21 12.79C20.8427 14.4922 20.2039 16.1144 19.1583 17.4668C18.1127 18.8192 16.7035 19.8458 15.0957 20.4265C13.4879 21.0073 11.748 21.1181 10.0795 20.7461C8.41104 20.3741 6.88302 19.5345 5.67425 18.3258C4.46548 17.117 3.62596 15.589 3.25393 13.9205C2.8819 12.252 2.99274 10.5121 3.57348 8.9043C4.15423 7.29651 5.18085 5.88737 6.53324 4.84175C7.88562 3.79614 9.50782 3.15731 11.21 3C10.2134 4.34827 9.73387 6.00945 9.85856 7.68141C9.98324 9.35338 10.7039 10.9251 11.8894 12.1106C13.075 13.2961 14.6466 14.0168 16.3186 14.1415C17.9906 14.2662 19.6518 13.7866 21 12.79V12.79Z"
+        stroke="#282846"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </g>
+  </svg>
+  <div style="display: flex; align-items: center">
+    <p>Have a nice day <a href="/user"> {{data.username}} </a></p>
+    <svg
+      width="14"
+      height="8"
+      viewBox="0 0 14 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 1L7 7L13 1"
+        stroke="#29A19C"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </div>
+</nav>
+<div class="box" style="display: none" id="box">
+  <button class="on-off-btn" onclick="closeBox()">x</button>
+  <h1>Add a new task</h1>
+  <div class="f1">
+    <form id="f1">
+      <div class="input">
+        <label>What should be done?</label>
+        <input name="what" type="text" />
+      </div>
+      <div class="multi-input">
+        <div>
+          <label>Category</label>
+          <select name="cata_name">
+            <option value="Home">Home</option>
+            <option value="Family">Family</option>
+            <option value="work">work</option>
+            <option value="Sport">Sport</option>
+          </select>
+        </div>
+        <div>
+          <label>When?</label>
+          <input name="when" type="datetime-local" />
+        </div>
+      </div>
+      <div class="button">
+        <button type="reset">Cancel</button>
+        <button type="submit">Add</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="body">
+  <div class="left">
+    <div class="sftw">
+      <div class="sftw__header">
+        <p>Success for the week</p>
+        <svg
+          width="28"
+          height="7"
+          viewBox="0 0 28 7"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g opacity="0.4">
+            <rect y="0.5" width="6" height="6" rx="3" fill="#282846" />
+            <rect x="11" y="0.5" width="6" height="6" rx="3" fill="#282846" />
+            <rect x="22" y="0.5" width="6" height="6" rx="3" fill="#282846" />
+          </g>
+        </svg>
+      </div>
+      <div class="sftw__c">
+        <div>
+          <h1>Created</h1>
+          <div>
+            <h1>{{data.Task.__len__()}}</h1>
+            <p>task</p>
+          </div>
+        </div>
+        <div>
+          <h1>Completed</h1>
+          <div>
+            <h1>{{_complete.__len__()}}</h1>
+            <p>task</p>
+          </div>
+        </div>
+        <div>
+          <h1>Removed</h1>
+          <div>
+            <h1>{{_delete.__len__()}}</h1>
+            <p>task</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="Active_complite">
+      <h1>Active Tasks</h1>
+      {% for i in _activ %}
+      <div class="border">
+        <p>{{i.what}}</p>
+        <div>
+          <button onclick="comple('{{i.id}}')">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="0.5"
+                y="0.5"
+                width="19"
+                height="19"
+                rx="3.5"
+                stroke="#00AF91"
+              />
+              <g clip-path="url(#clip0_1126_27)">
+                <path
+                  d="M16.2857 5.69226L8.42855 13.3076L4.85712 9.84611"
+                  stroke="#29A19C"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_1126_27">
+                  <rect
+                    width="15"
+                    height="9"
+                    fill="white"
+                    transform="translate(2 5)"
+                  />
+                </clipPath>
+              </defs>
+            </svg>
+          </button>
+          <button onclick="deleteF('{{i.id}}')">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M1.6875 4.5C1.6875 4.18934 1.93934 3.9375 2.25 3.9375H15.75C16.0607 3.9375 16.3125 4.18934 16.3125 4.5C16.3125 4.81066 16.0607 5.0625 15.75 5.0625H2.25C1.93934 5.0625 1.6875 4.81066 1.6875 4.5Z"
+                fill="#F05454"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M7.5 2.0625C7.25136 2.0625 7.0129 2.16127 6.83709 2.33709C6.66127 2.5129 6.5625 2.75136 6.5625 3V3.9375H11.4375V3C11.4375 2.75136 11.3387 2.5129 11.1629 2.33709C10.9871 2.16127 10.7486 2.0625 10.5 2.0625H7.5ZM12.5625 3.9375V3C12.5625 2.45299 12.3452 1.92839 11.9584 1.54159C11.5716 1.1548 11.047 0.9375 10.5 0.9375H7.5C6.95299 0.9375 6.42839 1.1548 6.04159 1.54159C5.6548 1.92839 5.4375 2.45299 5.4375 3V3.9375H3.75C3.43934 3.9375 3.1875 4.18934 3.1875 4.5V15C3.1875 15.547 3.4048 16.0716 3.79159 16.4584C4.17839 16.8452 4.70299 17.0625 5.25 17.0625H12.75C13.297 17.0625 13.8216 16.8452 14.2084 16.4584C14.5952 16.0716 14.8125 15.547 14.8125 15V4.5C14.8125 4.18934 14.5607 3.9375 14.25 3.9375H12.5625ZM4.3125 5.0625V15C4.3125 15.2486 4.41127 15.4871 4.58709 15.6629C4.7629 15.8387 5.00136 15.9375 5.25 15.9375H12.75C12.9986 15.9375 13.2371 15.8387 13.4129 15.6629C13.5887 15.4871 13.6875 15.2486 13.6875 15V5.0625H4.3125Z"
+                fill="#F05454"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+      <h1>Completed Tasks</h1>
+      {% for i in _complete %}
+      <div class="border">
+        <p>{{i.what}}</p>
+        <div>
+          <button>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M1.6875 4.5C1.6875 4.18934 1.93934 3.9375 2.25 3.9375H15.75C16.0607 3.9375 16.3125 4.18934 16.3125 4.5C16.3125 4.81066 16.0607 5.0625 15.75 5.0625H2.25C1.93934 5.0625 1.6875 4.81066 1.6875 4.5Z"
+                fill="#F05454"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M7.5 2.0625C7.25136 2.0625 7.0129 2.16127 6.83709 2.33709C6.66127 2.5129 6.5625 2.75136 6.5625 3V3.9375H11.4375V3C11.4375 2.75136 11.3387 2.5129 11.1629 2.33709C10.9871 2.16127 10.7486 2.0625 10.5 2.0625H7.5ZM12.5625 3.9375V3C12.5625 2.45299 12.3452 1.92839 11.9584 1.54159C11.5716 1.1548 11.047 0.9375 10.5 0.9375H7.5C6.95299 0.9375 6.42839 1.1548 6.04159 1.54159C5.6548 1.92839 5.4375 2.45299 5.4375 3V3.9375H3.75C3.43934 3.9375 3.1875 4.18934 3.1875 4.5V15C3.1875 15.547 3.4048 16.0716 3.79159 16.4584C4.17839 16.8452 4.70299 17.0625 5.25 17.0625H12.75C13.297 17.0625 13.8216 16.8452 14.2084 16.4584C14.5952 16.0716 14.8125 15.547 14.8125 15V4.5C14.8125 4.18934 14.5607 3.9375 14.25 3.9375H12.5625ZM4.3125 5.0625V15C4.3125 15.2486 4.41127 15.4871 4.58709 15.6629C4.7629 15.8387 5.00136 15.9375 5.25 15.9375H12.75C12.9986 15.9375 13.2371 15.8387 13.4129 15.6629C13.5887 15.4871 13.6875 15.2486 13.6875 15V5.0625H4.3125Z"
+                fill="#F05454"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="right">
+    <div class="JOTD">
+      <h1>Joke of the day</h1>
+      <p>{{joke}}</p>
+    </div>
+    <div class="PC">
+      <h1>Progress chart</h1>
+      <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+</div>
+
+{% endblock body %} {% block script %}
+<script>
+  function comple(id) {
+    $.ajax({
+      url: "/complite/tesk/" + id,
+      method: "POST",
+      success: function (response) {
+        window.location.href = "/home";
+      },
+      error: function () {
+        alert("error");
+      },
+    });
+  }
+  function deleteF(id) {
+    $.ajax({
+      url: "/delete/tesk/" + id,
+      method: "POST",
+      success: function (response) {
+        window.location.href = "/home";
+      },
+      error: function () {
+        alert("error");
+      },
+    });
+  }
+</script>
+<script>
+  let c = JSON.parse(htmlDecode(`{{complete}}`));
+  function htmlDecode(input) {
+    var doc = new DOMParser().parseFromString(input, "text/html");
+    return doc.documentElement.textContent;
+  }
+  let a = JSON.parse(htmlDecode(`{{a}}`));
+  let d = JSON.parse(htmlDecode(`{{delete}}`));
+  let a_d = [0, 0, 0, 0, 0, 0, 0];
+  let c_d = [0, 0, 0, 0, 0, 0, 0];
+  let d_d = [0, 0, 0, 0, 0, 0, 0];
+  for (let i of c) {
+    if (moment(new Date(i.When)).week() == moment().week()) {
+      c_d[new Date(i.When).getDay()] += 1;
+    }
+  }
+  for (let i of d) {
+    if (moment(new Date(i.When)).week() == moment().week()) {
+      d_d[new Date(i.When).getDay()] += 1;
+    }
+  }
+  for (let i of a.Task) {
+    if (moment(new Date(i.When)).week() == moment().week()) {
+      a_d[new Date(i.When).getDay()] += 1;
+    }
+  }
+
+  const labels = moment.weekdaysShort();
+  const ctx = document.getElementById("myChart").getContext("2d");
+  const myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "complite",
+          data: c_d,
+          fill: false,
+          borderColor: " #29A19C",
+          tension: 0.01,
+        },
+        {
+          label: "Active",
+          data: a_d,
+          fill: false,
+          borderColor: "#29A19C",
+          tension: 0.01,
+        },
+        {
+          label: "delete",
+          data: d_d,
+          fill: false,
+          borderColor: "rgb(225,0,0)",
+          tension: 0.01,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+</script>
+<script>
+  function openBox() {
+    $("#box").css({ display: "" });
+  }
+  function closeBox() {
+    $("#box").css({ display: "none" });
+  }
+</script>
+<script>
+  $("#f1").submit((env) => {
+    env.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: "/add/tesk",
+      data: $("#f1").serialize(),
+      success: function (response) {
+        window.location.href = "/home";
+      },
+      error: function () {
+        alert("error");
+      },
+    });
+  });
+</script>
+
+{% endblock script %}

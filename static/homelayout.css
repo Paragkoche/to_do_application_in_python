@@ -1,0 +1,142 @@
+body {
+  display: flex;
+}
+.side-nav {
+  width: 20vw;
+  height: 100vh;
+  box-shadow: 0px 10px 25px rgba(29, 52, 54, 0.08);
+  padding: 20px;
+  position: relative;
+}
+.side-nav header {
+  display: flex;
+  align-items: center;
+}
+.side-nav header svg {
+  margin-right: 20px;
+}
+.side-nav header p {
+  /* logo__text */
+
+  width: 55px;
+  height: 44px;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0.03em;
+
+  /* Акцент */
+  color: #29a19c;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.cat {
+  width: 100%;
+}
+.cat h1,
+.data h1 {
+  margin: 20px 0;
+  text-align: center;
+  /* nav__title */
+
+  width: 120px;
+  height: 33px;
+
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 33px;
+  /* identical to box height */
+  letter-spacing: 0.03em;
+
+  /* Акцент */
+  color: #29a19c;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+.cat li,
+.data li {
+  list-style: none;
+  display: flex;
+  height: 50px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+.cat li svg,
+.data li svg {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+.cat li p,
+.data li p {
+  /* Дом */
+
+  width: 144px;
+  height: 22px;
+
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  letter-spacing: 0.025em;
+
+  /* Светлая тема/Темный */
+  color: #282846;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+}
+.cat li:hover ~ * {
+  stroke: #29a19c;
+  color: #29a19c;
+}
+
+.logout {
+  position: absolute;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.logout svg {
+  margin-right: 20px;
+}
+.logout p {
+  /* Выйти */
+
+  width: 85px;
+  height: 22px;
+
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  /* identical to box height */
+  letter-spacing: 0.025em;
+
+  /* Светлая тема/Темный */
+  color: #282846;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
